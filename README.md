@@ -7,5 +7,5 @@ Untuk menyisipkan suatu gambar di dalam dokumen Jupyter Notebook, ukuran gambar 
 
 - ukuran pasfoto telah disesuaikan agar terlihat sesuai dengan bidang tampilan dokumen;
 - berkas pasfoto telah diletakkan dalam folder/direktori yang sama dengan dokumen laporan ini.
-
+print('-----------------------')
 ![description](filename.png)
