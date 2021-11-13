@@ -27,3 +27,24 @@ pembagian | `$ \frac{10}{s - 7} $` | $\frac{10}{s - 7}$
 x=$\frac{-b{\pm{\sqrt{b^2 -4 \times a \times c}}}}{2 \times a}$
 ---
 
+### <span style="color:blue">Tugas #3: Berusia Panjang? &#8594; 25 poin</span>
+Dapatkah seorang bayi yang baru lahir diharapkah akan hidup terus selama satu milyar ($10^9$) detik?
+__Petunjuk__: Lakukan konversi satuan waktu sehingga memudahkan untuk menentukan kelayakan dapat hidup terus dari bayi tersebut.
+
+<span style="color:red">&#9881;</span> Pada sel di bawah ini, tulislah suatu program Python lengkap yang melakukan perhitungan untuk menjawab pertanyaan di atas.
+---
+#var hidup bayi
+HidupBayi=10**9
+
+#var konversi waktu
+HarapanHari=HidupBayi/86400 
+HarapanBulan=HidupBayi/2678400
+HarapanTahun=HidupBayi/31536000
+
+#hasil konversi
+print('Harapan hidup bayi')
+print(HidupBayi, 'detik')
+print(HarapanHari, 'hari')
+print(HarapanBulan, 'bulan')
+print(HarapanTahun, 'tahun')
+---
