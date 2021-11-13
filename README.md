@@ -10,3 +10,16 @@ Untuk menyisipkan suatu gambar di dalam dokumen Jupyter Notebook, ukuran gambar 
 ---
 ![description](filename.png)
 ---
+
+### <span style="color:blue">Tugas #2: Rumus Matematika &#8594; 20 poin</span>
+
+Dengan dukungan bahasa _markup_ $\LaTeX$, _Markdown_ dapat dipakai untuk menampilkan rumus matematika secara tepat dan rapi. Setiap rumus ditulis di antara sepasang tanda-dollar `$ $`. Beberapa contoh penulisan komponen rumus matematika:
+
+Komponen | ditulis | terlihat
+-|:-:|:-:
+pangkat   | `$ x^2 $`   | $x^2$
+indeks    | `$ p_{akhir} $` | $p_{akhir}$
+simbol perkalian | `$ \times $` | $\times$
+simbol plus-minus | `$ \pm $` | $\pm$ 
+akar kuadrat | `$ \sqrt{16} $` | $\sqrt{16}$
+pembagian | `$ \frac{10}{s - 7} $` | $\frac{10}{s - 7}$
