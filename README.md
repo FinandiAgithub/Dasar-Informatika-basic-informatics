@@ -3,4 +3,4 @@
 
 Untuk menyisipkan suatu gambar di dalam dokumen Jupyter Notebook, ukuran gambar menjadi sesuatu yang perlu diperhatikan  agar hasil penyisipan tidak terkesan terlalu kecil atau telalu besar dibandingkan bidang tampilan dokumen. Sebagai acuan umum, panjang dan/atau lebar gambar sebaiknya sekitar 300 piksel.
 
-![name](filename.png)
+![description](filename.png)
