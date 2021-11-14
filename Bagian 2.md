@@ -149,3 +149,50 @@ for key in v :
     print("Gaya hambat saat bola ditendang {} adalah {} N" \
           .format(key, round(Fd, 3)))
 ```
+
+
+### <span style="color:blue">Tugas #4: <i>String</i> Gaya Gravitasi &#8594; 20 poin</span>
+Gaya gravitasi pada suatu benda dapat dinyatakan dengan rumus:
+$$ F_g = m \, g $$
+dengan
+- $m$ = massa benda; dan
+- $g$ = percepatan gravitasi = 9,81 m/s$^2$.
+Mirip <font style="color:blue">Tugas #3</font>, rumus di atas dapat dipakai untuk menghitung gaya gravitasi yang dialami suatu bola kaki ketika ditendang.
+
+<span style="color:red">&#9881;</span> Pada sel di bawah ini, tulislah program Python <b>lengkap</b> bernama `GayaGravitasi.py` yang menghitung gaya gravitasi yang dialami suatu bola saat ditendang. Bola yang ditinjau adalah bola yang sama pada <font style="color:blue">Tugas #3</font>. Selain itu, program ini juga menghitung rasio antara gaya hambat dan gaya gravitasi pada bola tersebut ketika ditendang keras ($v$ = 120 km/jam) dan ketika ditendang lunak ($v$ = 30 km/jam).
+```
+# GayaGravitasi.py: Program Python untuk menghitung gaya gravitasi
+#                   yang dialami suatu bola saat ditendang.
+
+# Tampilkan judul
+print("Menghitung gaya gravitasi bola")
+print("-------------------------")
+
+# Menetapkan variabel
+g = 9.81                                                                                    # Percepatan gravitasi (m/s^2)
+m = 0.43                                                                                    # Massa (kg)
+
+# Menghitung gaya gravitasi
+Fg = m * g
+
+
+# Menampilkan gaya gravitasi
+print("Gaya gravitasi yang dialami bola sebesaar {} N \n"\
+      .format(round(Fg, 3)))
+
+# Menampilkan judul
+print("\nMenghitung rasio antara gaya hambat dan gaya gravitasi")
+print("------------------------------------------------------")
+
+# Menampilkan gaya hambat yang telah dikalkulasi pada tugas 3
+for key in GayaHambat :
+    print("Gaya hambat saat bola ditendang {} ialah {} N"\
+          .format(key, round(GayaHambat[key], 3)))
+    
+# Menghitung dan menampilkan rasio antara gaya hambat dan gaya gravitasi
+print()
+for key in GayaHambat :
+    rasio = GayaHambat[key] / Fg
+    print("Rasio antara gaya hambat bola ditendang {} dan gaya gravitasi bola adalah {}"\
+          .format(key, round(rasio, 3)))
+```
