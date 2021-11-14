@@ -1,5 +1,4 @@
-# basic-informatics
-A list of basic informatics skills (Python)
+# basic-informatics (Python) #2
 
 
 ### <span style="color:blue">Tugas #1: <i>Debugging</i> &#8594; 30 poin</span>
