@@ -1,4 +1,4 @@
-# basic-informatics (Python) Part #3
+# basic-informatics (Python) #3
 
 
 ### <span style="color:blue">Tugas #1: Koordinat Titik Berjarak Seragam &#8594; 20 poin</span>
