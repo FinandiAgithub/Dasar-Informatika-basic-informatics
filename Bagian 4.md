@@ -143,3 +143,79 @@ for i in range(len(nilai_x)):
     Y4 = y_4[i]
     print('|%3.1f | %2.1f | %2.1f | %2.1f | %2.1f|' %(X, Y1, Y2, Y3, Y4))
 ```
+
+### <span style="color:blue">Tugas #3: Pendekatan Terhadap $\pi$ &#8594; 30 poin</span>
+Setiap lingkaran memiliki perbandingan keliling dan diameter yang selalu tetap. Nilai tetap ini sudah lama ditemukan dan dilambangkan dengan $\pi$. Nilai yang tepat dari $\pi$ dapat didekati oleh deret yang tak-berhingga berikut:
+$$ \pi \approx 3 + \frac{4}{2 \times 3 \times 4} - \frac{4}{4 \times 5 \times 6} + \frac{4}{6 \times 7 \times 8} - \frac{4}{8 \times 9 \times 10} + \frac{4}{10 \times 11 \times 12} - \cdots \quad (1) $$ 
+Urutan suku pada deret tak-berhingga pada Persamaan (1) adalah
+- suku ke-0 adalah $3$
+- suku ke-1 adalah $4 / (2 \times 3 \times 4)$
+- suku ke-2 adalah $4 / (4 \times 5 \times 6)$
+- suku ke-3 adalah $4 / (6 \times 7 \times 8)$
+- dan seterusnya.
+Sementara itu, tanda positif ($+$) dan negatif ($-$) yang berganti-ganti pada setiap suku di atas dapat diperoleh dengan mempertimbangkan ekspresi $(-1)^n$ ketika $n = 1, 2, 3, \cdots$.
+
+<span style="color:red">&#9881;</span> Pada sel di bawah ini, tulislah definisi fungsi `piKira2()` yang menerima satu argumen, yakni urutan suku dari deret tak-berhingga di atas. Fungsi ini mengembalikan nilai pendekatan $\pi$ hingga (dan termasuk) suku yang diberikan sebagai nilai argumen. Ujilah kebenaran kerja fungsi yang anda buat dengan memanggil namanya dan memberikan nilai argumen yang diperlukannya serta membandingkan hasil kembalian fungsi dengan yang diperoleh memakai kalkulator ilmiah.
+<u>Petunjuk</u>: Nilai yang diberikan untuk menggantikan argumen fungsi `piKira2()` ketika fungsi tersebut dipanggil adalah selalu lebih besar daripada nol.
+```
+# piKira2(): Fungsi mengembalikan nilai pendekatan 𝜋 hingga 
+#            (dan termasuk) suku yang diberikan sebagai nilai argumen
+#            Finandi 29/09/2021
+
+
+# Mendefinisikan fungsi
+def piKira2(z):
+    # Membuat variabel 
+    p = 0
+    n = 4
+    d1 = 2
+    d2 = 3
+    d3 = 4
+    # Membuat kalang untuk kalkulasi
+    for i in range (1,z):
+        a = 2 * (i % 2) - 1            # Membuat faktor pengali +1 dan -1 
+        p += a * n / (d1 * d2 * d3)    # Perhitungan matematis
+        piKira2 = 3 + p                # Menambahkan perhitungan dengan konstanta 3
+        d1 += 2                        # Memberi nilai lompatan 
+        d2 += 2                        # Memberi nilai lompatan 
+        d3 += 2                        # Memberi nilai lompatan 
+    return piKira2
+```
+
+<span style="color:red">&#9881;</span> Dengan menggunakan fungsi `piKira2()` yang sudah anda buat sebelumnya; pada sel di bawah ini, tulislah program Python __lengkap__ bernama `pi_kira2.py` yang menampilkan 20 pendekatan terhadap penentuan nilai $\pi$.
+Pendekatan pertama hanya memakai suku ke-0 dan ke-1 dari deret yang tak-berhingga pada Persamaan (1). Pendekatan kedua hanya memakai suku ke-0, ke-1 dan ke-2 dari deret yang tak-berhingga pada Persamaan (1). Pendekatan berikutnya menyertakan satu suku lagi dari deret yang tak-berhingga pada Persamaan (1) dan selalu menampilkan pendekatan $\pi$ yang lebih akurat dari semua tampilan pendekatan sebelumnya.
+```
+# pi_kira2.py: Menampilkan 20 pendekatan terhadap penentuan nilai  𝜋
+#              Finandi 29/09/2021
+
+
+# Membuat kalang dan menampilkan hasil program
+for i in range(2, 22):
+    print(piKira2(i))
+```
+
+### <span style="color:blue">Tugas #4: Luas Segitiga &#8594; 15 poin</span>
+Suatu segitiga sembarang yang diketahui nilai-nilai koordinat dari ketiga titik sudutnya: $(x_1, y_1), (x_2, y_2)$ dan $(x_3, y_3)$ dapat dihitung luasnya dengan memakai rumus berikut:
+$$ A = \frac{1}{2} \left[ x_2 \, y_3 - x_3 \, y_2 - x_1 \, y_3 + x_3 \, y_1 + x_1 \, y_2 - x_2 \, y_1 \right] $$
+
+<span style="color:red">&#9881;</span> Pada sel di bawah ini, tulislah definisi fungsi `luasSegitiga()` yang menerima 6 argumen berupa pasangan koordinat $(x, y)$ dari ketiga titik sudut suatu segitiga sembarang. Urutan pemberian ke-enam argumen adalah $x_1, y_1, x_2, y_2, x_3, y_3$. Fungsi ini akan mengembalikan nilai luas dari segitiga yang telah diberikan koordinat titik-titik sudutnya.
+<u>Petunjuk</u>: Periksalah kebenaran fungsi yang anda buat dengan pemanggilan fungsi dan nilai kembalian seperti di bawah ini:
+- `luasSegitiga(2, 2, 5, 2, 2, 6)` $\rightarrow$ `6`
+- `luasSegitiga(3, 2, 11, 2, 7, 10)` $\rightarrow$ `32`
+- `luasSegitiga(1.5, 2.5, 10.3, 7.2, 7.4, 15.8)` $\rightarrow$ `44.655`
+```
+# luasSegitiga().py: Menerima 6 argumen berupa pasangan koordinat  (𝑥,𝑦)  dari ketiga titik sudut suatu segitiga sembarang.
+#                    Fungsi ini akan mengembalikan nilai luas dari segitiga yang telah diberikan koordinat titik-titik sudutnya.
+#                    Finandi 28/09/2021
+
+
+# Membuat definisi fungsi
+def luasSegitiga(x1,y1,x2,y2,x3,y3) :
+    A = (1/2)*(x2*y3 - x3*y2 - x1*y3 + x3*y1 + x1*y2 - x2*y1 )
+    return A
+
+# Menampilkan hasil program
+print ('luasSegitiga(2, 2, 5, 2, 2, 6)               =', luasSegitiga(2, 2, 5, 2, 2, 6))
+print ('luasSegitiga(3, 2, 11, 2, 7, 10)             =', luasSegitiga(3, 2, 11, 2, 7, 10))
+print ('luasSegitiga(1.5, 2.5, 10.3, 7.2, 7.4, 15.8) =', luasSegitiga(1.5, 2.5, 10.3, 7.2, 7.4, 15.8))
+```
