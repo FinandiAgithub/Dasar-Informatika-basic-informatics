@@ -96,3 +96,56 @@ print('\nJika kecepatan awal mobil adalah %g km/jam dan koefisien gesek %g maka'
        ' jarak pengereman sampai berhenti adalah %g meter' % (v2, miu2, d2))
 ```
 
+<span style="color:red">&#9881;</span> Pada sel di bawah ini, tulislah program Python <b>lengkap</b> bernama `JarakPengereman_2.py` yang menampilkan hasil perhitungan rumus (1) ketika laju awal $v_0$ dan koefisien gesekan $\mu$ diberikan pengguna progam melalui Baris Perintah dalam lingkungan Teminal atau <i>Command Prompt</i>. Jalankan progam tersebut untuk dua kasus dengan laju awal: $v_0 = 120$ km/jam dan $v_0 = 50$ km/jam serta $\mu = 0.3$ (tanpa dimensi) pada kedua kasus tersebut.
+
+```
+#JarakPengereman_2.py : Program yang menampilkan hasil perhitungan rumus (1) ketika laju awal  𝑣0  dan koefisien gesekan  𝜇 
+#                       diberikan pengguna progam melalui Baris Perintah dalam lingkungan Teminal atau Command Prompt.
+#                       Finandi 28/10/2021
+
+
+# Judul Program
+print('Jarak untuk Menghentikan Mobil')
+print('---------------------------------')
+
+# Menambahkan pustaka untuk memanfaatkan baris perintah
+import sys
+
+# Melakukan definisi fungsi jarak pengereman dan input rumus
+def pengereman(v0,miu):
+    g = 9.81                # m/s**2
+    d = v0**2 / (2*miu*g)   # Hukum Gerakan kedua Newton (m)
+    return d
+
+# Membuat user input kecepatan awal 1 dan 2
+v1 = float(sys.argv[1])
+miu1= float(sys.argv[2])
+v2 = float(sys.argv[3])
+miu2= float(sys.argv[4])
+
+# Konversi satuan km/jam ke m/s
+v01 = (1000/3600)*(v1)     
+v02 = (1000/3600)*(v2)
+
+# Memanggil fungsi pengereman
+d1 = pengereman(v01,miu1)
+d2 = pengereman(v02,miu2)
+
+# Menampilkan hasil perhitungan jarak pengereman
+print('\nJika kecepatan awal mobil adalah %g km/jam dan koefisien gesek %g maka' \
+       ' jarak pengereman sampai berhenti adalah %g meter' % (v1, miu1, d1))
+print('\nJika kecepatan awal mobil adalah %g km/jam dan koefisien gesek %g maka' \
+       ' jarak pengereman sampai berhenti adalah %g meter' % (v2, miu2, d2))
+```
+
+```
+%run JarakPengereman_2.py 120 0.3 50 0.3
+```
+
+```
+# Menguji kesalahan program
+%run JarakPengereman_2.py 0 0 0 0
+```
+
+Kesalahan yang didapat adalah = ZeroDivisionError: float division by zero
+
