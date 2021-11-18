@@ -203,3 +203,59 @@ except :
     print('\nMohon dicek kembali, Terjadi kesalahan misterius')
 ```
 
+<span style="color:red">&#9881;</span> Pada sel di bawah ini, tulislah program Python <b>lengkap</b> bernama `JarakPengereman_4.py` yang merupakan perluasan terhadap program `JarakPengereman_2.py` yang telah dibuat sebelumnya. Pada perluasan ini, selidiki dulu jenis kesalahan apa saja yang mungkin tejadi ketika pengguna program memberikan masukannya melalui Baris Perintah. Lalu, sediakan penanganan untuk setiap jenis kesalahan di dalam blok perintah setelah kata-kunci `except`.
+
+```
+#JarakPengereman_4.py : Program yang yang merupakan perluasan terhadap program JarakPengereman_2.py
+#                       yang telah dibuat sebelumnya.
+#                       Finandi 28/10/2021
+
+
+# Judul Program
+print('Perluasan dengan Perkecualian')
+print('---------------------------------')
+
+# Memasukkan modul/pustaka
+import sys
+
+# Melakukan definisi fungsi jarak pengereman dan input rumus
+def pengereman(v0,miu):
+    g = 9.81                # m/s**2
+    d = v0**2 / (2*miu*g)  # Hukum Gerakan kedua Newton (m)
+    return d
+
+# Menambahkan argumen, perkecualian dan menampilkan hasil perhitungan
+try:
+    v1 = float(sys.argv[1])
+    miu1= float(sys.argv[2])
+    v2 = float(sys.argv[3])
+    miu2= float(sys.argv[4])
+    v01 = (1000/3600)*(v1)
+    v02 = (1000/3600)*(v2)
+    d1 = pengereman(v01,miu1)
+    d2 = pengereman(v02,miu2)
+    print('\nJika kecepatan awal mobil adalah %g km/jam dan koefisien gesek %g maka' \
+       ' jarak pengereman sampai berhenti adalah %g meter' % (v1, miu1, d1))
+    print('\nJika kecepatan awal mobil adalah %g km/jam dan koefisien gesek %g maka' \
+       ' jarak pengereman sampai berhenti adalah %g meter' % (v2, miu2, d2))
+
+# Pengecualian
+except ValueError as kk :
+    if str(kk) == 'math domain error' :
+        print('\nMohon masukkan angka dengan benar')
+    else :
+        print('\nInput yang anda berikan bukan bilangan')
+except ZeroDivisionError :   # Hasil error seperti padapercobaan JarakPengereman_2.py
+    print('\nAnda memberikan input yang mengakibatkan pembagian nol')
+except :
+    print('\nMohon dicek kembali, Terjadi kesalahan misterius')
+```
+
+```
+# Menguji sesuai data 
+%run JarakPengereman_4.py 120 0.3 50 0.3 
+print()
+
+# Menguji kesalahan
+%run JarakPengereman_4.py 0 0 a 0 
+```
