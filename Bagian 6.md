@@ -149,3 +149,13 @@ print('\nJika kecepatan awal mobil adalah %g km/jam dan koefisien gesek %g maka'
 
 Kesalahan yang didapat adalah = ZeroDivisionError: float division by zero
 
+### <span style="color:blue">Tugas #3: Perluasan dengan Perkecualian &#8594; 20 poin</span>
+
+Sudah menjadi praktik pemrograman yang lazim dilakukan: setelah suatu program dengan masukan pengguna dapat berjalan baik maka selanjutnya sang pemrogam berusaha mencari berbagai cara untuk menimbulkan kesalahan dan kemudian cara mengatasinya.
+
+Ketika seorang pengguna memberi masukan baik secara interaktif dengan papan-ketik maupun melalui Baris Perintah, mungkin saja ia membuat kesalahan sehingga <i>interpeter</i> Python memunculkan pesan kesalahan yang mengandung info tentang jenis kesalahan seperti: `IndexError`, `NameError`, `TypeError`, `ValueError`, `ZeroDivisionError`, dan sebagainya.
+
+Untuk menangani kesalahan yang muncul, Bahasa Python menyediakan stuktur perkecualian (<i>exception</i>) yang berbentuk stuktur `try-except`.
+
+<span style="color:red">&#9881;</span> Pada sel di bawah ini, tulislah program Python <b>lengkap</b> bernama `JarakPengereman_3.py` yang merupakan perluasan terhadap program `JarakPengereman_1.py` yang telah dibuat sebelumnya. Pada perluasan ini, selidiki dulu jenis kesalahan apa saja yang mungkin tejadi ketika pengguna program memberikan masukannya melalui papan-ketik. Lalu, sediakan penanganan untuk setiap jenis kesalahan di dalam blok perintah setelah kata-kunci `except`.
+
