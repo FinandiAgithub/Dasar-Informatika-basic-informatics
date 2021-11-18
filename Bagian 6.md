@@ -1,1 +1,98 @@
 # basic-informatics (Python) #6
+
+
+### <span style="color:blue">Tugas #1: Baris Perintah dan Pekecualian &#8594; 20 poin</span>
+
+Ketika seorang pengguna menjalankan program melalui Baris Perintah dalam lingkungan Terminal atau <i>Command Prompt</i> mungkin saja ia membuat kesalahan yang tekait dengan pemberian argumen-argumen yang diperlukan agar pogram dapat bekerja secara benar. Beberapa kesalahan yang mungkin terjadi beserta jenis kesalahannya menurut <i>interpreter</i> Python, antara lain:
+
+- tidak memberikan argumen sama sekali sesuai yang diperlukan $\rightarrow$ `IndexError`
+- argumen yang diberikan tidak dapat diubah menjadi tipe yang seharusnya $\rightarrow$ `ValueError`
+- cacah argumen yang diberikan tidak sebanyak yang diperlukan $\rightarrow$ `IndexError`
+
+<span style="color:red">&#9881;</span> Pada sel di bawah ini, tulislah program Python <b>lengkap</b> bernama `KonversiFkeC_6.py` yang merupakan perluasan dari progam yang telah dibuat sebelumnya: `KonversiFkeC_2.py` ketika melakukan Kerja Lab PDI-06.
+
+Progam ini menerima suhu dalam satuan Fahrenheit yang diberikan pengguna program melalui Baris Perintah dan menampilkan suhu tersebut dalam satuan Celsius pada layar komputer. Namun, kalau terjadi kesalahan ketika pengguna memberikan masukannya maka program ini dapat menangani kesalahan tesebut dengan menggunakan perkecualian berupa stuktur `try-except`.
+
+<b>Petunjuk</b>: Selidiki dulu jenis kesalahan apa saja yang mungkin tejadi ketika pengguna program memberikan masukannya. Lalu, sediakan penanganan untuk setiap jenis kesalahan di dalam blok perintah setelah kata-kunci `except`.
+```
+#KonversiFkeC_6.py : Program yang menerima suhu dalam satuan Fahrenheit yang diberikan pengguna program melalui
+#                    Baris Perintah dan menampilkan suhu tersebut dalam satuan Celsius pada layar komputer
+#                    Finandi 28/10/2021
+
+
+# Menambah pustaka untuk memanfaatkan baris perintah
+import sys
+
+# Menambah argumen, pengecualian, dan menampilkan hasil
+try :
+    derF = float(sys.argv[1])
+    derC = (derF - 32) * (5 / 9)
+    print('\nSuhu %g derF = %g derC' % (derF, derC))
+except ValueError as obyekExcep :
+    if str(obyekExcep) == 'math domain error':
+        print('\nSuhu diberikan tidak dapat dikonversi menjadi celcius')
+    else : 
+        print('\nAnda memberikan input yang bukan bilangan')
+except IndexError:
+    print('\nMohon berikan angka sesuai kebutuhan program')
+except :
+    print('\nMohon dicek kembali, Terjadi kesalahan misterius')
+```
+
+```
+%run KonversiFkeC_6.py 80.6
+```
+
+```
+# Uji Kesalahan
+%run KonversiFkeC_6.py Lapan puluh koma enam
+%run KonversiFkeC_6.py 1*779
+```
+
+### <span style="color:blue">Tugas #2: Jarak untuk Menghentikan Mobil &#8594; 25 poin</span>
+
+Seorang pengendara sedang menjalankan mobilnya pada laju awal $v_0$ dan lalu secara mendadak mengenakan rem (<i>brake</i>) pada kenderaannya. Berapakah jarak pengereman $d$ yang diperlukan agar dapat menghentikan mobil tersebut? Dengan menerapkan Hukum Gerakan yang kedua dari Newton atau persamaan tenaga yang terkait dapat dijabarkan:
+
+$$ d = \frac{1}{2} \, \frac{v_0^2}{\mu \, g} \quad\quad\quad (1) $$
+
+dengan $\mu$ adalah koefisien gesekan dan $g$ adalah percepatan gravitasi.
+
+<span style="color:red">&#9881;</span> Pada sel di bawah ini, tulislah program Python <b>lengkap</b> bernama `JarakPengereman_1.py` yang menampilkan hasil perhitungan rumus (1) ketika laju awal $v_0$ dan koefisien gesekan $\mu$ diberikan pengguna progam secara interaktif melalui papan-ketik. Jalankan progam tersebut untuk dua kasus dengan laju awal: $v_0 = 120$ km/jam dan $v_0 = 50$ km/jam serta $\mu = 0.3$ (tanpa dimensi) pada kedua kasus tersebut.
+
+```
+#JarakPengereman_1.py : Program yang menampilkan hasil perhitungan rumus (1) ketika laju awal v0 
+#                       dan koefisien gesekan miu diberikan pengguna progam secara interaktif melalui papan-ketik
+#                       Finandi 28/10/2021
+
+
+# Menampilkan udul Program
+print('Jarak untuk Menghentikan Mobil')
+print('---------------------------------')
+
+# Melakukan definisi fungsi jarak pengereman dan input rumus
+def pengereman(v0,miu):
+    g = 9.81                # m/s**2
+    d = v0**2 / (2*miu*g)   # Hukum Gerakan kedua Newton (m)
+    return d
+
+# Membuat user input kecepatan awal 1 dan 2
+v1 = float(input('\nIsikan kecepatan awal mobil (km/jam) : '))
+miu1= float(input('Isikan koefisien gesekan(1)  : '))
+v2 = float(input('\nIsikan kecepatan awal mobil (km/jam) : '))
+miu2= float(input('Isikan koefisien gesekan(2)  : '))
+
+# Mengkonversi satuan km/jam ke m/s
+v01 = (1000/3600)*(v1)     
+v02 = (1000/3600)*(v2)
+
+# Memanggil fungsi pengereman
+d1 = pengereman(v01,miu1)
+d2 = pengereman(v02,miu2)
+
+# Menampilkan hasil perhitungan jarak pengereman
+print('\nJika kecepatan awal mobil adalah %g km/jam dan koefisien gesek %g maka' \
+       ' jarak pengereman sampai berhenti adalah %g meter' % (v1, miu1, d1))
+print('\nJika kecepatan awal mobil adalah %g km/jam dan koefisien gesek %g maka' \
+       ' jarak pengereman sampai berhenti adalah %g meter' % (v2, miu2, d2))
+```
+
