@@ -159,3 +159,47 @@ Untuk menangani kesalahan yang muncul, Bahasa Python menyediakan stuktur perkecu
 
 <span style="color:red">&#9881;</span> Pada sel di bawah ini, tulislah program Python <b>lengkap</b> bernama `JarakPengereman_3.py` yang merupakan perluasan terhadap program `JarakPengereman_1.py` yang telah dibuat sebelumnya. Pada perluasan ini, selidiki dulu jenis kesalahan apa saja yang mungkin tejadi ketika pengguna program memberikan masukannya melalui papan-ketik. Lalu, sediakan penanganan untuk setiap jenis kesalahan di dalam blok perintah setelah kata-kunci `except`.
 
+```
+#JarakPengereman_3.py : Program yang merupakan perluasan terhadap program 
+#                       JarakPengereman_1.py yang telah dibuat sebelumnya
+#                       Finandi 28/10/2021
+
+
+# Judul Program
+print('Perluasan dengan Perkecualian')
+print('---------------------------------')
+
+# Melakukan definisi fungsi jarak pengereman dan input rumus
+def pengereman(v0,miu):
+    g = 9.81                # m/s**2
+    d = v0**2 / (2*miu*g)   # Hukum Gerakan kedua Newton (m)
+    return d
+
+# Menambahkan argumen, perkecualian dan menampilkan hasil perhitungan
+# kode sama seperti JarakPengereman_1.py
+try:
+    v1 = float(input('Masukan kecepatan awal mobil (km/jam) : '))
+    miu1= float(input('Masukan koefisien gesekan(1)  : '))
+    v2 = float(input('Masukan kecepatan awal mobil (km/jam) : '))
+    miu2= float(input('Masukan koefisien gesekan(2)  : '))
+    v01 = (1000/3600)*(v1)
+    v02 = (1000/3600)*(v2)
+    d1 = pengereman(v01,miu1)
+    d2 = pengereman(v02,miu2)
+    print('\nJika kecepatan awal mobil adalah %g km/jam dan koefisien gesek %g maka' \
+       ' jarak pengereman sampai berhenti adalah %g meter' % (v1, miu1, d1))
+    print('\nJika kecepatan awal mobil adalah %g km/jam dan koefisien gesek %g maka' \
+       ' jarak pengereman sampai berhenti adalah %g meter' % (v2, miu2, d2))
+
+# Pengecualian
+except ValueError as kk :
+    if str(kk) == 'math domain error' :
+        print('\nMohon masukkan angka dengan benar')
+    else :
+        print('\nInput yang anda berikan bukan bilangan')
+except ZeroDivisionError :   # Hasil error seperti padapercobaan JarakPengereman_2.py
+    print('\nAnda memberikan input yang mengakibatkan pembagian nol')
+except :
+    print('\nMohon dicek kembali, Terjadi kesalahan misterius')
+```
+
