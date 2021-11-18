@@ -259,3 +259,107 @@ print()
 # Menguji kesalahan
 %run JarakPengereman_4.py 0 0 a 0 
 ```
+
+### <span style="color:blue">Tugas #4: Nilai Rerata Berjalan &#8594; 30 poin</span>
+
+Perhitungan nilai rerata (_average_ atau _mean value_) dari sekumpulan $N$ data dapat dilakukan dengan dua cara:
+
+- setelah semua $N$ data terkumpul, atau
+- sewaktu baru $n \leq N$ data terkumpul.
+
+Cara yang pertama sesuai untuk pengumpulan data yang bersifat _batch_ (cacah data sudah tertentu dan tidak bertambah lagi) sedangkan cara yang kedua lebih sesuai untuk pengumpulan data yang bersifat _countinous_ (cacah data berubah terus dengan berjalannya waktu).
+
+Penentuan nilai rerata untuk sekumpulan data $x_i$ yang sedang berjalan dan masih terkumpul terus bersama berlalunya waktu dapat menggunakan rumus:
+
+$$ \bar{x}_{\text{A}} = \frac{\sum_{i = 1}^n x_i}{n} \quad\quad\quad (2) $$
+
+dengan $n$ adalah cacah data yang sudah terkumpul dari keseluruhan $N$ data ($n \leq N$).
+
+Rumus alternatif untuk menentukan nilai rerata berjalan adalah
+
+$$ \bar{x}_{\text{B}} = \alpha \, x_{i} + (1 - \alpha) \, x_{i - 1} \quad\quad\quad (3) $$
+
+dengan $i$ berubah dari $1$ hingga $N$ dan $x_0 = 0$ serta $\alpha$ merupakan nilai bobot di antara $0$ dan $1$ ($0 < \alpha \leq 1$).
+
+Untuk menunjukkan seberapa baik hasil komputasi dengan rumus $(3)$ mendekati hasil rumus $(2)$ maka dapat dihitung ralat (<i>error</i>) pehitungan dengan rumus:
+
+$$ \bar{x}_{\text{e}} = | \bar{x}_{\text{A}} - \bar{x}_{\text{B}} | \quad\quad\quad (4) $$
+
+<span style="color:red">&#9881;</span> Pada sel di bawah, tulislah program Python <b>lengkap</b> bernama `RerataBerjalan.py` yang membuka berkas `suhu_Mei.txt` dan selanjutnya:
+
+- Membaca satu data dari berkas berupa nilai suhu udara pada suatu hari dalam bulan Mei.
+- Menampilkan data yang terbaca dalam satuan Fahrenheit.
+- Menghitung dan menampilkan nilai rerata berjalan dengan rumus $(2)$.
+- Menghitung dan menampilkan nilai rerata berjalan dengan rumus $(3)$ dan $\alpha = 0.8$.
+- Menghitung ralat pehitungan dengan rumus $(4)$.
+- Melanjutkan dengan pembacaan data berikutnya untuk diterapkan kedua rumus rerata berjalan di atas hingga seluruh data telah dibaca dan diolah.
+
+Contoh sebagian tampilan output program ini:
+
+```
+ i   xi   xA   xB   xe
+--- ---- ---- ---- ----
+  1 67.0 67.0 60.3  6.7
+  2 72.0 69.5 71.5  2.0
+  3 74.0 71.0 73.8  2.8
+  4 62.0 68.8 63.2  5.6
+  5 56.0 66.2 56.6  9.6
+```
+
+Setelah tampilan tabel seperti di atas, tulislah tabel tesebut ke dalam suatu berkas bernama `rerata_Mei.txt`. Apakah nilai-nilai $\bar{x}_{\text{e}}$ semakin kecil ketika cacah data $n$ semakin mendekati cacah total $N$?
+
+<b>Petunjuk</b>: Sertakan berkas data `rerata_Mei.txt` buatan anda bersama berkas ber-ekstensi: `.ipynb` hasil dari Laporan Lab PDI-06 ketika anda melakukan <i>submission</i> praktikum ini.
+
+```
+#RerataBerjalan.py: Program yang menghitung rerata berjalan, rerata alternatif, 
+#                   dan galatnya dari data suhu bulan Mei pada tabel yang rapi.
+#                   Finandi 28/10/2021
+
+
+# Menampilkan judul Program
+print('                          Nilai Rerata Berjalan ')
+print('-----------------------------------------------------------------------')
+
+# Memasukkan variable yang dibutuhkan
+alpha = 0.8
+
+# Membuka berkas dan menentukan mode pembukaan berkas ('r'&'w')
+suhu_r = open('suhu_Mei.txt', 'r')
+suhu_w = open('rerata_Mei.txt', 'w')
+
+# Memisahkan tiap baris pada file penyimpan suhu bulan Mei
+baris = suhu_r.readlines()
+
+# Membuat kepala tabel pada file terpisah --> rerata_Mei.txt
+print('|   i  |  Suhu (F) |   Rerata (xA)   |     Rerata (xB)   | Galat (xe) |', file = suhu_w)
+print('-----------------------------------------------------------------------', file = suhu_w)
+
+# Membuat kepala tabel untuk keluaran Jupyter Notebook
+print('|   i  |  Suhu (F) |   Rerata (xA)   |     Rerata (xB)   | Galat (xe) |')
+print('-----------------------------------------------------------------------')
+
+# Pembuatan list penyimpan suhu temporary (sementara) untuk perhitungan xA dan yang kedua untuk perhitungan xB
+# Dalam list, diberi satu anggota baru di awal, yaitu x0 = 0 untuk perhitungan xB di loop pertama.
+# Dilakukan perubahan rumus pada xB,  xB = x[i]...*x[i-1] diubah menjadi x[i+1]...*x[i] 
+# pengeditan ini dilakukan untuk menyesuaikan index di kode yang dimulai dari 0,bukan 1 seperti di rumus). 
+suhu = [0]
+for i in range(len(baris)):
+    hasil = baris[i].split()
+    suhu.append(float(hasil[0]))
+    xA = sum(suhu[1:])/len(suhu[1:])              # Memotong index list ke-0 untuk menyesuaikan jumlah len(suhu) sehingga          
+                                                  # pembacaan dilakukan untuk indeks 1 ke atas
+    xB = alpha * suhu[i+1] + (1 - alpha)*suhu[i] 
+    xe = abs(xA - xB)         
+    
+    # Menuliskan output hasil program ke file rerata_Mei.txt
+    print('|  %2g  |   %.2f   |     %.2f       |      %.2f        |    %5.2f   |' % (i+1, float(hasil[0]), xA, xB, xe), file = suhu_w)
+    print('---------------------------------------------------------------------', file = suhu_w)
+
+    # Menampilkan output hasil program untuk jupyter
+    print('|  %2g  |   %.2f   |     %.2f       |      %.2f        |    %5.2f   |' % (i+1, float(hasil[0]), xA, xB, xe))
+    print('---------------------------------------------------------------------')
+
+# Menutup kedua berkas
+suhu_r.close()
+suhu_w.close()
+```
