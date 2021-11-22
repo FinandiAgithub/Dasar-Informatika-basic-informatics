@@ -77,4 +77,67 @@ grafik.savefig('LintasanBola.pdf')
 ```
 
 
+### <span style="color:blue">Tugas #2: Grafik dari Data &#8594; 25 poin</span>
 
+Untuk menjajagi bentuk dan sebaran data yang tersimpan di dalam suatu berkas teks, acapkali ditempuh langkah pertama berupa menampilkan grafik dari data tersebut. Setelah grafik data terlihat jelas barulah dapat ditentukan langkah analisis selanjutnya.
+
+Contoh berkas teks yang berisikan data berbentuk dua kolom adalah berkas `xy.dat` yang menyertai Laporan Lab ini. Sebagian awal dari isi berkas ini adalah seperti berikut:
+
+<center><img src="xy.png"></center>
+
+Sesuai dengan nama berkasnya, nilai-nilai pada kolom kiri dan kolom kanan masing-masing adalah koordinat-$x$ dan koordinat-$y$ dari suatu kurva.
+
+<span style="color:red">&#9881;</span> Pada sel di bawah ini, dengan memanfaatkan pustaka `numpy` dan `matplotlib`, tulislah program Python <b>lengkap</b> bernama `Baca2Kolom.py` yang membaca, menampilkan kurva dari dan mengolah data dua-kolom yang tersimpan di dalam berkas `xy.dat`.
+
+- Mula-mula, baca berkas sehingga nilai-nilai pada kolom kiri tersimpan pada `listX` dan nilai-nilai pada kolom kanan tersimpan pada `listY`.
+- Ubah masing-masing kedua <i>lists</i> tersebut menjadi dua bentuk larik (<i>array</i>) `x` dan `y` yang sesuai dengan pustaka `numpy`.
+- Tampilkan grafik (beserta dekorasinya yang lengkap) yang memuat kurva `x` vs `y`.
+- Hitung dan tampilkan nilai terkecil, nilai terbesar,  nilai rerata (<i>mean</i>) dan simpangan baku (<i>standard deviation</i> dari larik `y`.
+
+<b>Petunjuk</b>: Pelajari dan gunakan fungsi-fungsi berikut yang disediakan pustaka `numpy`: `amin()`, `amax()`, `mean()` dan `std()`.
+```
+#Baca2Kolom.py: Program yang membaca, menampilkan kurva dari dan mengolah 
+#               data dua-kolom yang tersimpan di dalam berkas xy.dat.
+#               Finandi 11/11/2021
+
+
+# Menampilkan judul program
+print('Baca2Kolom.py')
+print('-------------')
+
+# Memanggil pustaka
+import numpy as np
+import matplotlib.pyplot as plt
+from math import *
+
+# Membuka dan membaca berkas
+baca = open('xy.dat','r')
+baris = baca.readlines()
+
+# Mengubah list menjadi larik
+listX = [] 
+listY = []
+for i in range (len(baris)):
+    kata = baris[i].split()
+    listX.append(float(kata[0]))
+    listY.append(float(kata[1]))
+# Mengubah ist to array
+x = np.array(listX) # larik x
+y = np.array(listY) # larik y
+
+# Membuat grafik
+grafik = plt.figure()
+plt.plot(x,y)
+plt.title('Grafik x vs y')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.grid()
+# Menampilkan grafik
+plt.show()
+
+# Menghitung nilai terkeceil, terbesar, rerata, dan simpangan baku dari larik y
+print('Nilai Terkecil:', np.amin(y))
+print('Nilai Terbesar:', np.amax(y))
+print('Rerata(mean):%5.3f' %np.mean(y))
+print('Simpangan Baku(std):%5.3f' %np.std(y))
+```
