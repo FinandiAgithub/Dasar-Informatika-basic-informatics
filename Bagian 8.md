@@ -215,3 +215,62 @@ plt.show()
 # Menyimpan berkas dalam bentuk file PNG
 grafik.savefig('KurvaNormal.png')
 ```
+
+    
+### <span style="color:blue">Tugas #4: Pembandingan Kurva &#8594; 20 poin</span>
+
+Untuk menilai pengaruh dua fungsi matematika yang berbeda dapat dilakukan dengan membandingkan tampilan kurva-kurva dari kedua fungsi tersebut di dalam satu grafik yang sama. Kode-sumber Bahasa Python di bawah ini bertujuan menampilkan suatu kurva parabola:
+<p>
+<center><img src="parabola.png"></center>
+ 
+<span style="color:red">&#9881;</span> Pada sel di bawah ini, tulislah program Python <b>lengkap</b> bernama `BandingkanKurva.py` yang melakukan langkah-langkah berikut:
+
+1. Salin dan jalankan kode-sumber di atas dan pelajari kurva parabola yang tampil.
+2. Ubahlah baris `y = x*(2 - x)` menjadi `y1 = x*(2 - x)`.
+3. Tambahkan baris kode-sumber baru: `y2 = np.cos(18 * np.pi * x)`.
+4. Sesuaikan baris-baris kode-sumber di bawah `import matplotlib.pyplot as plt` sehingga dapat menampilkan dua kurva `x` vs `y1` dan `x` vs `y2` dalam satu grafik yang sama.
+5. Jalankan kode-sumber yang sudah disesuaikan dan pelajari kedua kurva yang tampil.
+
+Apakah kurva kedua adalah pendekatan yang tepat terhadap kurva pertama? Apakah anda dapat memperbaiki pendekatan ini?
+```
+#BandingkanKurva.py: Program yang melakukan langkah-langkah berikut:
+#                    1. Salin dan jalankan kode-sumber di atas dan pelajari kurva parabola yang tampil.
+#                    2. Ubahlah baris y = x*(2 - x) menjadi y1 = x*(2 - x).
+#                    3. Tambahkan baris kode-sumber baru: y2 = np.cos(18 * np.pi * x).
+#                    4. Sesuaikan baris-baris kode-sumber di bawah import matplotlib.pyplot as plt sehingga dapat 
+#                       menampilkan dua kurva x vs y1 dan x vs y2 dalam satu grafik yang sama.
+#                    5. Jalankan kode-sumber yang sudah disesuaikan dan pelajari kedua kurva yang tampil.
+#                    Finandi 11/11/2021
+
+
+# Menampilkan judul program
+print('BandingkanKurva.py')
+print('------------------')
+
+# Memanggil pustaka
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Membuat larik
+x = np.linspace(0, 2, 20)
+y1 = x*(2-x)
+y2 = np.cos(18*np.pi*x)
+
+# Memperbaiki pendekatan terhadap kurva pertama
+y3 = np.cos((pi*x/2) - (pi/2))
+
+# Membuat grafik
+grafik = plt.figure()
+plt.plot(x, y1,'b-')
+plt.plot(x, y2,'g-')
+plt.plot(x, y3,'r-')
+plt.legend(['y1 = x*(2-x)', 'y2 = cos(18*pi*x)', 'y3(perbaikan) = cos(pi*x/2 - pi/2)'])
+plt.grid()
+# Menampilkan grafik
+plt.show()
+
+# Membuat kesimpulan
+print('Kesimpulan:')
+print('-----------')
+print('Pendekatan kurva kedua terhadap kurva pertama belum tepat, sehingga diperlukan kurva ketiga (y3) untuk menjawab kasus pendekatan kurva pertama')
+```
