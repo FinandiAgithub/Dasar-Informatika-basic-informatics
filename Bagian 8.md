@@ -141,3 +141,77 @@ print('Nilai Terbesar:', np.amax(y))
 print('Rerata(mean):%5.3f' %np.mean(y))
 print('Simpangan Baku(std):%5.3f' %np.std(y))
 ```
+
+
+### <span style="color:blue">Tugas #3: Fungsi Rapat Kementakan &#8594; 30 poin</span>
+
+Pada kehidupan sehari-hari, banyak peristiwa di alam terjadi dengan frekuensi relatif yang dapat dilukiskan sebagai fungsi rapat kementakan (<i>probability density function</i>) normal. Fungsi ini memiliki bentuk kurva yang khas, yakni mirip bentuk genta atau stupa. Bentuk spesifik dari fungsi ini tergantung pada dua parameter: nilai rerata (<i>mean</i>) $\mu$ dan simpangan baku (<i>standard deviation</i>) $\sigma$. Nilai rerata menentukan kecenderungan memusat dari fungsi ini sedangkan simpangan baku menentukan kecenderungannya untuk menyebar. Untuk sejumlah nilai variabel mandiri $x$, fungsi rapat kementakan normal menimbulkan sejumlah nilai $y$ terkait yang dihubungkan dengan rumus:
+
+$$ y(x) = \frac{1}{\sigma \, \sqrt{2 \, \pi}} \, e^{-\frac{1}{2} \left[ \frac{x - \mu}{\sigma} \right]^2} \quad\quad\quad (2) $$
+
+dengan $e$ = 2.71828 dan $\pi$ = 3.141594.
+
+Grafik berikut menampilkan empat bentuk fungsi rapat kementakan normal pada rentang $x$ yang sama namun dengan nilai $\mu$ dan $\sigma$ yang berbeda-beda:
+<p>
+<center><img src="normal.png"></center>
+
+<span style="color:red">&#9881;</span> Pada sel di bawah ini, dengan memanfaatkan pustaka `numpy` dan `matplotlib`, tulislah program Python <b>lengkap</b> bernama `KurvaNormal.py` yang menggambar-ulang grafik dengan empat kurva fungsi rapat kementakan normal di atas secara semirip mungkin. Gunakan Persamaan $(2)$ untuk membangkitkan pasangan nilai-nilai $(x, y)$ yang diperlukan. Selain tampilan dari grafik pada layar komputer, simpankan juga grafik tersebut ke dalam berkas bernama `KurvaNormal.png`. 
+
+<b>Petunjuk</b>: Sertakan berkas grafik `KurvaNormal.png` buatan anda bersama berkas ber-ekstensi: .ipynb hasil dari Laporan Lab PDI-08 ketika anda melakukan <i>submission</i> praktikum ini.
+```
+#KurvaNormal.py: Program yang menggambar-ulang grafik dengan empat kurva fungsi rapat 
+#                kementakan normal di atas secara semirip mungkin.
+#                Finandi 11/11/2021
+
+
+# Menampilkan judul program
+print('KurvaNormal.py')
+print('--------------')
+
+# Memanggil pustaka
+import numpy as np
+import matplotlib.pyplot as plt
+from math import *
+
+# Membuat larik
+n = 100 # cacah titik
+x = np.linspace(-5,5,n)
+
+# Membuat definisi fungsi
+def y(x, miu, s):
+    y = 1/(s*sqrt(2*pi))*e**(-1/2*((x-miu)/s)**2)
+    return y
+
+# Membuat variable 
+miu1 = 0
+miu2 = 0
+miu3 = 0
+miu4 = -2
+s1 = sqrt(0.2)
+s2 = sqrt(1.0)
+s3 = sqrt(5.0)
+s4 = sqrt(0.5)
+# Memasukkan koordinat
+y1 = y(x, miu1, s1)
+y2 = y(x, miu2, s2)
+y3 = y(x, miu3, s3)
+y4 = y(x, miu4, s4)
+
+# Membuat grafik
+grafik = plt.figure()
+plt.xlabel('$ x $', fontsize = 14)
+plt.ylabel(r'$y = \varphi_{\mu, \sigma^2}(x) $', fontsize = 14) # Menyesuaikan ukuran font
+plt.plot(x,y1,'b-')                                             # Membuat variasi warna sesuai pada gambar
+plt.plot(x,y2,'r-')
+plt.plot(x,y3,'y-')
+plt.plot(x,y4,'g-')
+plt.xticks([i for i in range(-5, 6)])                           # membuat range pada titik-titik di sumbu-x
+plt.yticks([i*0.2 for i in range(6)])                           # membuat range pada titik-titik di sumbu-y
+plt.legend(['μ = 0,  σ² = 0.2,', 'μ = 0,  σ² = 1.0,', 'μ = 0,  σ² = 5.0,', 'μ = -2, σ² = 0.5,'])
+plt.grid()
+# Menampilkan grafik
+plt.show()
+
+# Menyimpan berkas dalam bentuk file PNG
+grafik.savefig('KurvaNormal.png')
+```
