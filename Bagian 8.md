@@ -1,2 +1,2 @@
-# Dasar-Informatika-basic-informatics
-A list of basic informatics skills (Python)
+# basic-informatics (Python) #8
+
